@@ -3,16 +3,15 @@ var tox = tox || {};
 tox.PLAYER_RADIUS = 20;
 tox.PLAYER_SPEED = 3;
 
-
 tox.Player = function(x, y, level) {
   this.x = x;
   this.y = y;
   this.level = level;
+  this.hp = 100;
 };
 
 tox.Player.prototype = new tox.Entity();
 tox.Player.constructor = tox.Player;
-
 
 tox.Player.prototype.update = function() {
   this.x += this.dx;
