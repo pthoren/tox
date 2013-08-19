@@ -28,11 +28,11 @@ tox.EntityManager.prototype.draw = function(context) {
   for(var i = 0; i < this.entities.length; i++) {
     this.entities[i].draw(context);
   }
-  if(this.drawDebug) {
+  /*if(this.drawDebug) {
     for(var i = 0; i < this.entities.length; i++) {
       this.entities[i].drawDebug(context);
     }
-  }
+  }*/
 };
 
 tox.EntityManager.prototype.add = function(entity) {

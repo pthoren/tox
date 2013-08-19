@@ -21,9 +21,9 @@ tox.Controller.prototype.init = function() {
   var _this = this;
 
   tox.canvas.onmousemove = function(e) {
-    _this.mouse.x = e.x;
-    _this.mouse.y = e.y;
-    //console.log(_this.mouse.leftPressed, _this.mouse.rightPressed);
+    var rect = tox.canvas.getBoundingClientRect();
+    _this.mouse.x = tox.WIDTH * (e.clientX - rect.left) / rect.width;
+    _this.mouse.y = tox.HEIGHT * (e.clientY - rect.top) / rect.height;
   };
 
   tox.canvas.onmousedown = function(e) {
@@ -47,7 +47,6 @@ tox.Controller.prototype.init = function() {
   };
 
   window.addEventListener("keydown", function(e) {
-    console.log(e.keyCode);
     tox.keysPressed[e.keyCode] = true;
   }, true);
 

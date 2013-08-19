@@ -19,12 +19,11 @@ tox.Entity.prototype.update = function() {
 };
 
 tox.Entity.prototype.draw = function(context) {
-	// Override this
+  // Override this
 };
 
-tox.DEBUG_ENTITY_COLOR = 'red';
 tox.Entity.prototype.drawDebug = function(context) {
-  context.strokeStyle = tox.DEBUG_ENTITY_COLOR;
+  context.strokeStyle = 'white';
   context.beginPath();
   context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
   context.stroke();
