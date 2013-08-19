@@ -23,7 +23,7 @@ tox.Controller.prototype.init = function() {
   tox.canvas.onmousemove = function(e) {
     _this.mouse.x = e.x;
     _this.mouse.y = e.y;
-    console.log(_this.mouse.leftPressed, _this.mouse.rightPressed);
+    //console.log(_this.mouse.leftPressed, _this.mouse.rightPressed);
   };
 
   tox.canvas.onmousedown = function(e) {
@@ -32,7 +32,7 @@ tox.Controller.prototype.init = function() {
     } else if (e.button === 2) {
       _this.mouse.rightPressed = true;
     }
-  }
+  };
 
   tox.canvas.onmouseup = function(e) {
     if (e.button === 0) {
@@ -40,7 +40,11 @@ tox.Controller.prototype.init = function() {
     } else if (e.button === 2) {
       _this.mouse.rightPressed = false;
     }
-  }
+  };
+
+  tox.canvas.oncontextmenu = function() {
+    return false;
+  };
 
   window.addEventListener("keydown", function(e) {
     console.log(e.keyCode);

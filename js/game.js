@@ -12,9 +12,22 @@ $(function() {
   tox.init();
 });
 
+tox.step = function() {
+  if (tox.controller.mouse.rightPressed) {
+    tox.player.runTo(tox.controller.mouse.x, tox.controller.mouse.y);
+    console.log("run");
+  }
+  tox.entityManager.update();
+  tox.entityManager.draw(tox.ctx);
+};
+
 tox.init = function() {
   tox.createCanvas();
   tox.state = States.PLAY;
+  tox.entityManager = new tox.EntityManager();
+  tox.player = new tox.Player(100, 100);
+  tox.entityManager.add( tox.player );
+  setInterval(tox.step, 30);
 };
 
 tox.createCanvas = function() {

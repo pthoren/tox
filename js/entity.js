@@ -2,16 +2,13 @@ var tox = tox || {};
 
 tox.ENTITY_DEFAULT_RADIUS = 10;
 
-tox.Entity = function(x, y) {
-  this.x = x;
-  this.y = y;
-
+tox.Entity = function() {
   this.dx = 0;
   this.dy = 0;
 
   this.radius = tox.ENTITY_DEFAULT_RADIUS;
   this.die = false
-}
+};
 
 tox.Entity.prototype.collideWithEntity = function(other) {
 
