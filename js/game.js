@@ -15,22 +15,30 @@ $(function() {
 });
 
 tox.step = function() {
+  var camCenter = {
+    x: tox.player.drawPos.x,
+    y: tox.player.drawPos.y
+  };
   if (tox.controller.mouse.rightPressed) {
     var target = tox.level.convertToAbsolute({
-      x: tox.controller.mouse.x, 
-      y: tox.controller.mouse.y
+      x: tox.controller.mouse.x + camCenter.x - tox.WIDTH/2, 
+      y: tox.controller.mouse.y + camCenter.y - tox.HEIGHT/2 
     });
     tox.player.runTo(target.x, target.y);
   }
   else {
     tox.player.stop();
   }
+  tox.ctx.save();
+  tox.ctx.translate(tox.WIDTH/2 - camCenter.x, tox.HEIGHT/2 - camCenter.y);
+  tox.ctx.moveTo(0, 0);
   tox.entityManager.update();
   tox.ctx.fillStyle = 'black';
-  tox.ctx.fillRect(0, 0, tox.WIDTH, tox.HEIGHT);
+  tox.ctx.fillRect(camCenter.x - tox.WIDTH/2, camCenter.y - tox.HEIGHT/2, tox.WIDTH, tox.HEIGHT);
   //tox.level.debugDraw(tox.ctx);
   tox.level.draw(tox.ctx);
   tox.entityManager.draw(tox.ctx);
+  tox.ctx.restore();
   tox.drawGui();
 };
 

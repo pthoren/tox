@@ -35,12 +35,22 @@ tox.Level.prototype.generate = function() {
   }
 };
 
+tox.Level.prototype.isSolid = function(x, y) {
+  return this.tiles[x][y].type === tox.TileType.WALL;
+};
+
 tox.ISO_X_OFFSET = tox.ISO_TILE_HEIGHT;
 tox.ISO_Y_OFFSET = tox.ISO_TILE_HEIGHT / 2;
 tox.Level.prototype.draw = function(context) {
   context.strokeStyle = 'red';
   for(var i = 0; i < this.width; i++) {
     for(var j = 0; j < this.height; j++) {
+      if(this.tiles[i][j].type === tox.TileType.FLOOR) {
+        context.fillStyle = '#222222';
+      }
+      else {
+        context.fillStyle = '#663333';
+      }
       context.save();
       context.translate( (i - j) * tox.ISO_X_OFFSET,
                          (i + j) * tox.ISO_Y_OFFSET );
@@ -50,7 +60,7 @@ tox.Level.prototype.draw = function(context) {
       context.lineTo(0, 2 * tox.ISO_Y_OFFSET);
       context.lineTo(-tox.ISO_X_OFFSET, tox.ISO_Y_OFFSET);
       context.closePath();
-      context.stroke();
+      context.fill();
       context.restore();
     }
   }
